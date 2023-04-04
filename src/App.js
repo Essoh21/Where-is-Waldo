@@ -1,13 +1,13 @@
 
-import './App.css';
 import React from 'react';
-import StyledComponent from './StyledComponent';
+import { BrowserRouter } from 'react-router-dom';
+import HomePage from './Pages/HomePage';
 function App() {
   return (
 
-    <StyledComponent>
-      Hello World!
-    </StyledComponent>
+    <BrowserRouter>
+      <HomePage />
+    </BrowserRouter>
   );
 
 }
