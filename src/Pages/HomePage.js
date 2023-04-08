@@ -2,10 +2,7 @@ import styled from "styled-components"
 import Header from "../HeaderCompoents/Header"
 import leveOneImage from "../images/artStationImage.jpg"
 import levelTwoImage from "../images/li-decai-5-2.jpg"
-import levelThreeImage from "../images/paint.png"
-
-const levelImageWidth = 6;
-const IMAGESCONTAINERHEIGHT = levelImageWidth * 3 + 4;
+import levelThreeImage from "../images/paint.png";
 
 const HomePage = () => {
     return (
@@ -17,11 +14,16 @@ const HomePage = () => {
                     the hidden elements in the picture
                 </Instructions>
                 <LevelImagesContainer>
-                    <div>
-                        <LevelImage src={leveOneImage} alt="level-one-image" />
-                        <LevelImage src={levelTwoImage} alt="level-two-image" />
+                    <div className="levelOneAndTwo">
+                        <StyledLevelContent title="Level one "
+                            imgsrc={leveOneImage} imgalt="level-one-image" />
+                        <StyledLevelContent title="Level two "
+                            imgsrc={levelTwoImage} imgalt="level-two-image" />
                     </div>
-                    <LevelImage src={levelThreeImage} alt="level-Three-image" />
+                    <div className="thirdLevel">
+                        <StyledLevelContent title="Level Three"
+                            imgsrc={levelThreeImage} imgalt="level-three-image" />
+                    </div>
 
                 </LevelImagesContainer>
             </HomePageBody>
@@ -41,14 +43,45 @@ padding: .5rem 1rem;
 height: auto;
 
 `
+const LevelContent = ({ title, imgsrc, imgalt, className }) => {
+    return (
+        <div className={className}>
+            <LevelTitle>
+                {title}
+            </LevelTitle>
+            <LevelImage src={imgsrc} alt={imgalt} />
+        </div>
+    )
+}
+
+const StyledLevelContent = styled(LevelContent)`
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     & :hover{
+        transform: scale(1.05);
+     }
+`;
 const LevelImagesContainer = styled.div`
-  width: clamp(10rem, 60vw, 60 rem);
-  &&~div{
+  width: clamp(10rem, 60vw, 60rem);
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  justify-content: center;
+  & .levelOneAndTwo{
     display: flex;
     flex-direction: row;
-    flex-wrap:wrap;
-    justify-content: space-between;
-  }
+    flex-wrap: wrap;
+ }
+`;
+
+const LevelTitle = styled.h3`
+
+font-weight:bold;
+font-family: sans serif;
+color: rgba(6,86,83,100);
+fonst-size:1.4rem
 
 `
 const LevelImage = styled.img`
