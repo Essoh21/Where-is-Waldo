@@ -3,13 +3,12 @@ import logo from "../../src/images/logo.png"
 import { Link } from "react-router-dom"
 
 
-const Header = () => {
+const Header = ({ page, pageTitle }) => {
     return (
         <HeaderDiv>
             <Logo src={logo} alt="app-logo" />
             <StyldeDiv>
-                <Link to="Score">Scores</Link>
-
+                <Link to={pageTitle}> {page}</Link>
             </StyldeDiv>
         </HeaderDiv>
     )

@@ -3,11 +3,12 @@ import Header from "../HeaderCompoents/Header"
 import leveOneImage from "../images/artStationImage.jpg"
 import levelTwoImage from "../images/li-decai-5-2.jpg"
 import levelThreeImage from "../images/paint.png";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
     return (
         <>
-            <Header />
+            <Header page="Scores" pageTitle="Scores" />
             <HomePageBody>
                 <Instructions>
                     Welcome to your favorite game. Chose a level and tagg
@@ -15,13 +16,19 @@ const HomePage = () => {
                 </Instructions>
                 <LevelImagesContainer>
                     <div className="levelOneAndTwo">
-                        <StyledLevelContent title="Level one "
+                        <StyledLevelContent
+                            link="/levelOne"
+                            title="Level one "
                             imgsrc={leveOneImage} imgalt="level-one-image" />
-                        <StyledLevelContent title="Level two "
+                        <StyledLevelContent
+                            link="/levelTwo"
+                            title="Level two "
                             imgsrc={levelTwoImage} imgalt="level-two-image" />
                     </div>
                     <div className="thirdLevel">
-                        <StyledLevelContent title="Level Three"
+                        <StyledLevelContent
+                            link="/levelThree"
+                            title="Level Three"
                             imgsrc={levelThreeImage} imgalt="level-three-image" />
                     </div>
 
@@ -43,18 +50,19 @@ padding: .5rem 1rem;
 height: auto;
 
 `
-const LevelContent = ({ title, imgsrc, imgalt, className }) => {
+const LevelContent = ({ title, imgsrc, imgalt, className, link }) => {
     return (
-        <div className={className}>
+        <Link to={link} className={className}>
             <LevelTitle>
                 {title}
             </LevelTitle>
             <LevelImage src={imgsrc} alt={imgalt} />
-        </div>
+        </Link>
     )
 }
 
 const StyledLevelContent = styled(LevelContent)`
+  text-decoration: none;
      display: flex;
      flex-direction: column;
      align-items: center;
