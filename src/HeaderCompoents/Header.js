@@ -1,14 +1,20 @@
 import styled from "styled-components"
 import logo from "../../src/images/logo.png"
-import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 
-const Header = ({ page, pageTitle }) => {
+
+const Header = ({ page, pageTitle, Timer }) => {
+    const navigation = useNavigate();
+    const handleClick = () => {
+        navigation(`${pageTitle}`);
+    }
     return (
         <HeaderDiv>
             <Logo src={logo} alt="app-logo" />
+            {Timer}
             <StyldeDiv>
-                <Link to={pageTitle}> {page}</Link>
+                <button onClick={handleClick}> {page}</button>
             </StyldeDiv>
         </HeaderDiv>
     )

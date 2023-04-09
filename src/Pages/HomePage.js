@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import Header from "../HeaderCompoents/Header"
-import leveOneImage from "../images/artStationImage.jpg"
+import levelOneImage from "../images/artStationImage.jpg"
 import levelTwoImage from "../images/li-decai-5-2.jpg"
 import levelThreeImage from "../images/paint.png";
 import { Link } from "react-router-dom";
@@ -19,7 +19,7 @@ const HomePage = () => {
                         <StyledLevelContent
                             link="/levelOne"
                             title="Level one "
-                            imgsrc={leveOneImage} imgalt="level-one-image" />
+                            imgsrc={levelOneImage} imgalt="level-one-image" />
                         <StyledLevelContent
                             link="/levelTwo"
                             title="Level two "
