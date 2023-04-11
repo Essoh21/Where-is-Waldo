@@ -2,7 +2,7 @@ import styled from "styled-components"
 import Header from "../HeaderCompoents/Header"
 import levelOneImage from "../images/artStationImage.jpg"
 import levelTwoImage from "../images/li-decai-5-2.jpg"
-import levelThreeImage from "../images/paint.png";
+import levelThreeImage from "../images/bobogai.jpg";
 import { Link } from "react-router-dom";
 
 const HomePage = () => {

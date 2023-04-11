@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 
 
-const Header = ({ page, pageTitle, Timer }) => {
+const Header = ({ page, pageTitle, Timer, Hiddens }) => {
     const navigation = useNavigate();
     const handleClick = () => {
         navigation(`${pageTitle}`);
@@ -13,6 +13,7 @@ const Header = ({ page, pageTitle, Timer }) => {
         <HeaderDiv>
             <Logo src={logo} alt="app-logo" />
             {Timer}
+            {Hiddens}
             <StyldeDiv>
                 <button onClick={handleClick}> {page}</button>
             </StyldeDiv>
