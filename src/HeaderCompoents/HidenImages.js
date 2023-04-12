@@ -16,9 +16,13 @@ const HiddenImages = ({ hiddenElements, className }) => {
 }
 
 const Img = styled.img`
+z-index: 50;
 width: 3rem;
 height: 3rem;
 border-radius: 30%;
+&:hover{
+    transform: scale(1.1)
+}
 `
 
 const StyledHiddenImages = styled(HiddenImages)`

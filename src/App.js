@@ -19,12 +19,15 @@ function App() {
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/levelOne' element={<Page Timer={<Chrono />}
+          hiddenElementsArray={LevelOneHiddens}
           hiddenElements={<StyledHiddenImages hiddenElements={LevelOneHiddens} />}
           levelImage={levelOneImage} />} />
         <Route path='/levelTwo' element={<Page Timer={<Chrono />}
+          hiddenElementsArray={LevelTwoHiddens}
           hiddenElements={<StyledHiddenImages hiddenElements={LevelTwoHiddens} />}
           levelImage={levelTwoImage} />} />
         <Route path='/levelThree' element={<Page Timer={<Chrono />}
+          hiddenElementsArray={LevelThreeHiddens}
           hiddenElements={<StyledHiddenImages hiddenElements={LevelThreeHiddens} />}
 
           levelImage={levelThreeImage} />} />

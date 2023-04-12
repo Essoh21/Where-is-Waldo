@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+
 import styled from 'styled-components';
 
 const PointerWrapper = styled.div`
@@ -25,23 +25,9 @@ z-index: 100;
  background-color: red;
 `;
 
-const Pointer = () => {
-    const [position, setPosition] = useState({ x: 0, y: 0 });
-
-    useEffect(() => {
-        const handleMouseMove = (e) => {
-            setPosition({ x: e.clientX - 50, y: e.clientY - 50 });
-        };
-
-        document.addEventListener('mousemove', handleMouseMove);
-
-        return () => {
-            document.removeEventListener('mousemove', handleMouseMove);
-        };
-    }, []);
-
+const Pointer = ({ position }) => {
     return (
-        <PointerWrapper style={{ left: position.x, top: position.y, cursor: 'none' }}>
+        <PointerWrapper style={{ left: position.x - 50, top: position.y - 50, cursor: 'none' }}>
             <Center />
         </PointerWrapper>
     );
