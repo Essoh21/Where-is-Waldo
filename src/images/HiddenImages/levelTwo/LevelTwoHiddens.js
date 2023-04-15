@@ -7,19 +7,22 @@ const LevelTwoHiddens = [
         "src": UnderPanl,
         "id": "one",
         "alt": "first-hidden-image",
-        "title": "first"
+        "title": "first",
+        "level": "two",
     },
     {
         "src": OnCable,
         "id": "two",
         "alt": "second-hidden-image",
-        "title": "second"
+        "title": "second",
+        "level": "two",
     },
     {
         "src": Flower,
         "id": "Three",
         "alt": "third-hidden-image",
-        "title": "third"
+        "title": "third",
+        "level": "two",
     }
 ]
 

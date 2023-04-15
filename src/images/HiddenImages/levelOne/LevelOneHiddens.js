@@ -7,19 +7,22 @@ const LevelOneHiddens = [
         "src": ThreeTanks,
         "id": "one",
         "alt": "first-hidden-image",
-        "title": "first"
+        "title": "first",
+        "level": "one",
     },
     {
         "src": UnderCable,
         "id": "two",
         "alt": "second-hidden-image",
-        "title": "second"
+        "title": "second",
+        "level": "one",
     },
     {
         "src": UnderPan,
         "id": "Three",
         "alt": "third-hidden-image",
-        "title": "third"
+        "title": "third",
+        "level": "one",
     }
 ]
 export default LevelOneHiddens;
