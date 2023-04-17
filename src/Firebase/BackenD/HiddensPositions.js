@@ -12,8 +12,8 @@ const HiddensPositions = [
         "level": "one",
         "minXRatio": 0.492,
         "maxXRatio": 0.516,
-        "minYRatio": 0.310,
-        "maxYRatio": 0.317
+        "minYRatio": 0.302,
+        "maxYRatio": 0.377
     },
     {
         "title": "third",
@@ -27,7 +27,7 @@ const HiddensPositions = [
         "title": "first",
         "level": "two",
         "minXRatio": 0.263,
-        "maxXRatio": 0.508,
+        "maxXRatio": 0.366,
         "minYRatio": 0.687,
         "maxYRatio": 0.848
     },

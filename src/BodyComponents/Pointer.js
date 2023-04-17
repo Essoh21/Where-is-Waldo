@@ -27,7 +27,7 @@ z-index: 100;
 
 const Pointer = ({ position }) => {
     return (
-        <PointerWrapper style={{ left: position.x - 50, top: position.y - 50, cursor: 'none' }}>
+        <PointerWrapper style={{ left: position.x - 45, top: position.y + 27, cursor: 'none' }}>
             <Center />
         </PointerWrapper>
     );

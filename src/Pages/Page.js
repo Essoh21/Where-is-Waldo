@@ -28,7 +28,7 @@ const Page = ({ levelImage, hiddenElements, Timer, hiddenElementsArray }) => {
 
     const handleMouseMove = (e) => {
         if (!isClicked) {
-            setPosition({ "x": e.clientX, "y": e.clientY });
+            setPosition({ "x": e.nativeEvent.offsetX, "y": e.nativeEvent.offsetY });
         }
 
     }
