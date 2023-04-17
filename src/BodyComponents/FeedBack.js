@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+
 import styled from 'styled-components';
 
 const FeedbackContainer = styled.div`
@@ -16,19 +16,7 @@ const FeedbackContainer = styled.div`
 const FeedbackText = styled.p`
   margin: 0;
 `;
-
-const FeedBack = ({ isWin }) => {
-    const [isVisible, setIsVisible] = useState(true);
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setIsVisible(false);
-        }, 1500);
-
-        return () => {
-            clearTimeout(timer);
-        };
-    }, []);
+const FeedBack = ({ isWin, isVisible }) => {
 
     return isVisible ? (
         <FeedbackContainer isWin={isWin}>

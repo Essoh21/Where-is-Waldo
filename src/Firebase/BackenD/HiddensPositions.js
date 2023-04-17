@@ -73,3 +73,5 @@ const HiddensPositions = [
     }
 
 ];
+
+export default HiddensPositions;

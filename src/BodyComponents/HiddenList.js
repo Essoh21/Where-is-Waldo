@@ -10,7 +10,10 @@ const HiddenList = ({ hiddenElements, position, handleClick }) => {
             }
         } >
             {hiddenElements.map((el) => {
-                return <Item onClick={handleClick} id={el.id} key={el.id}><Img src={el.src} alt={el.alt} /> <H4 > {el.title}</H4></Item>
+                return <Item onClick={handleClick} data-level={el.level} data-title={el.title}
+                    key={el.id}><Img src={el.src} alt={el.alt} />
+                    <H4 > {el.title}</H4>
+                </Item>
             })}
         </Div >
     )
