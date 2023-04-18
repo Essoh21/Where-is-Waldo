@@ -10,10 +10,16 @@ const HiddenList = ({ hiddenElements, position, handleClick }) => {
             }
         } >
             {hiddenElements.map((el) => {
-                return <Item onClick={handleClick} data-level={el.level} data-title={el.title}
-                    key={el.id}><Img src={el.src} alt={el.alt} />
-                    <H4 > {el.title}</H4>
-                </Item>
+                if (el.isFound) {
+                    return <FoundItem data-level={el.level} data-title={el.title}
+                        key={el.id}><Img src={el.src} alt={el.alt} />
+                        <H4 > {el.title}</H4>
+                    </FoundItem>
+                } else
+                    return <Item onClick={handleClick} data-level={el.level} data-title={el.title}
+                        key={el.id}><Img src={el.src} alt={el.alt} />
+                        <H4 > {el.title}</H4>
+                    </Item>
             })}
         </Div >
     )
@@ -53,6 +59,18 @@ justify-content: center;
 & :hover{
 border: 1px solid white;
 }
+`;
+const FoundItem = styled.div`
+margin:0;
+color: #ddd;
+text-decoration: line-through;
+padding:.2rem;
+box-sizing: border-box;
+display: flex;
+flex-direction: row;
+gap: .5rem;
+align-items center;
+justify-content: center;
 `
 
 export default HiddenList;

@@ -15,6 +15,8 @@ const Page = ({ levelImage, hiddenElements, Timer, hiddenElementsArray }) => {
     const [isClicked, setIsClicked] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
     const [feedBack, setFeedBack] = useState(false);
+    const [levelHiddens, setLevelHiddens] = useState(hiddenElementsArray);
+    const [gameOver, setGameOver] = useState(false);
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -47,16 +49,24 @@ const Page = ({ levelImage, hiddenElements, Timer, hiddenElementsArray }) => {
             return (el.level === level);
         })
         setHiddenElPositions(() => updatedHiddenElPosition);
-        if (isFound(title, positionRatios, updatedHiddenElPosition)) {
+        if (isFound(title, positionRatios, HiddenElPositions)) {
             setFeedBack(true);
+
+            setLevelHiddens(() => {
+                const updatedLevelHiddens = levelHiddens.map((hidden) => {
+                    if (hidden.title === title) {
+                        return { ...hidden, isFound: true }
+                    }
+                    return hidden;
+                });
+                if ((updatedLevelHiddens.find((hidden) => hidden.isFound === false)) === undefined) {
+                    setGameOver(true);
+                }
+                return updatedLevelHiddens;
+            });
         } else {
             setFeedBack(false);
         }
-        console.log(HiddenElPositions);
-        console.log(positionRatios.x)
-        console.log(positionRatios.y)
-
-        console.log(isFound(title, positionRatios, updatedHiddenElPosition));
         setIsVisible(true);
         setIsClicked(!isClicked);
     }
@@ -67,7 +77,7 @@ const Page = ({ levelImage, hiddenElements, Timer, hiddenElementsArray }) => {
             <FeedBack isWin={feedBack} isVisible={isVisible} />
             <Img src={levelImage} onMouseMove={handleMouseMove} onClick={handleLevelImageClick} />
             {(!isClicked) && <Pointer position={position} />}
-            {(isClicked) && <HiddenList position={position} hiddenElements={hiddenElementsArray}
+            {(isClicked) && <HiddenList position={position} hiddenElements={levelHiddens}
                 handleClick={handleHiddenListClick} />}
 
         </>
@@ -78,6 +88,7 @@ max-height: 100%;
 max-width: 100%;
 position: relative;
 grid-area: body;
+cursor: none;
 `
 const isFound = (elementTitle, clickPositionRatios, HiddenRatios) => {
     let result = false;

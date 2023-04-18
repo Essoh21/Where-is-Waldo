@@ -9,6 +9,7 @@ const LevelThreeHiddens = [
         "alt": "first-hidden-image",
         "title": "first",
         "level": "three",
+        "isFound": false,
     },
     {
         "src": Light,
@@ -16,6 +17,7 @@ const LevelThreeHiddens = [
         "alt": "second-hidden-image",
         "title": "second",
         "level": "three",
+        "isFound": false,
     },
     {
         "src": UnderBredge,
@@ -23,6 +25,7 @@ const LevelThreeHiddens = [
         "alt": "third-hidden-image",
         "title": "third",
         "level": "three",
+        "isFound": false,
     }
 ]
 export default LevelThreeHiddens;

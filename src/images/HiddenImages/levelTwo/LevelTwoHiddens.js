@@ -9,6 +9,7 @@ const LevelTwoHiddens = [
         "alt": "first-hidden-image",
         "title": "first",
         "level": "two",
+        "isFound": false,
     },
     {
         "src": OnCable,
@@ -16,6 +17,7 @@ const LevelTwoHiddens = [
         "alt": "second-hidden-image",
         "title": "second",
         "level": "two",
+        "isFound": false,
     },
     {
         "src": Flower,
@@ -23,6 +25,7 @@ const LevelTwoHiddens = [
         "alt": "third-hidden-image",
         "title": "third",
         "level": "two",
+        "isFound": false,
     }
 ]
 

@@ -28,9 +28,7 @@ const Chrono = () => {
     };
 
     return (
-        <div>
-            <Div>{formatTime(time)}</Div>
-        </div>
+        <Div>{formatTime(time)}</Div>
     );
 };
 

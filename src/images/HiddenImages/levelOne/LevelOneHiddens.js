@@ -9,6 +9,7 @@ const LevelOneHiddens = [
         "alt": "first-hidden-image",
         "title": "first",
         "level": "one",
+        "isFound": false,
     },
     {
         "src": UnderCable,
@@ -16,6 +17,7 @@ const LevelOneHiddens = [
         "alt": "second-hidden-image",
         "title": "second",
         "level": "one",
+        "isFound": false,
     },
     {
         "src": UnderPan,
@@ -23,6 +25,7 @@ const LevelOneHiddens = [
         "alt": "third-hidden-image",
         "title": "third",
         "level": "one",
+        "isFound": false,
     }
 ]
 export default LevelOneHiddens;
