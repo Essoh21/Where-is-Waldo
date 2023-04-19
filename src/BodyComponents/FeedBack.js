@@ -18,11 +18,11 @@ const FeedbackText = styled.p`
 `;
 const FeedBack = ({ isWin, isVisible }) => {
 
-    return isVisible ? (
-        <FeedbackContainer isWin={isWin}>
-            {isWin ? <FeedbackText>You won!</FeedbackText> : <FeedbackText>Keep trying</FeedbackText>}
-        </FeedbackContainer>
-    ) : null;
+  return isVisible ? (
+    <FeedbackContainer isWin={isWin}>
+      {isWin ? <FeedbackText>You've found it!</FeedbackText> : <FeedbackText>Keep trying</FeedbackText>}
+    </FeedbackContainer>
+  ) : null;
 };
 
 export default FeedBack;

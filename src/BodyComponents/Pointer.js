@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 
 const PointerWrapper = styled.div`
-  z-index: 99;
+  z-index: 10;
   position: fixed;
   pointer-events: none;
   width: 6rem ;
@@ -26,9 +26,16 @@ z-index: 100;
 `;
 
 const Pointer = ({ position }) => {
+    const pointerSize = 6; // size in rem
+    const pointerRadius = pointerSize / 2;
+    const centerSize = 3; // size in px
+    const centerRadius = centerSize / 2;
+    const left = position.x - (pointerRadius);
+    const top = position.y - (pointerRadius);
+
     return (
-        <PointerWrapper style={{ left: position.x - 45, top: position.y + 27, cursor: 'none' }}>
-            <Center />
+        <PointerWrapper style={{ left, top, cursor: 'none' }}>
+            <Center style={{ marginLeft: `-${centerRadius}px`, marginTop: `-${centerRadius}px` }} />
         </PointerWrapper>
     );
 };

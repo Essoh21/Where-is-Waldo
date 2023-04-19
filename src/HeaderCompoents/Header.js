@@ -4,10 +4,10 @@ import { useNavigate } from "react-router-dom";
 
 
 
-const Header = ({ page, pageTitle, Timer, Hiddens }) => {
+const Header = ({ page, pageLink, Timer, Hiddens }) => {
     const navigation = useNavigate();
     const handleClick = () => {
-        navigation(`${pageTitle}`);
+        navigation(`${pageLink}`);
     }
     return (
         <HeaderDiv>

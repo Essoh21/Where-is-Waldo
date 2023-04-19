@@ -1,26 +1,9 @@
 
 import styled from 'styled-components';
 
-import React, { useState, useEffect } from 'react';
-
-const Chrono = () => {
-    const [time, setTime] = useState(0);
-    const [isRunning, setIsRunning] = useState(true);
-
-    useEffect(() => {
-        let intervalId;
-        if (isRunning) {
-            intervalId = setInterval(() => {
-                setTime(prevTime => prevTime + 1);
-            }, 10);
-        }
-        return () => {
-            clearInterval(intervalId);
-        };
-    }, [isRunning]);
-
+const Chrono = ({ time }) => {
     const formatTime = (timeInMilliseconds) => {
-        const NUMBER_OF_TENMILLISEC_IN_A_MIN = 6000
+        const NUMBER_OF_TENMILLISEC_IN_A_MIN = 6000;
         const min = Math.floor(timeInMilliseconds / NUMBER_OF_TENMILLISEC_IN_A_MIN);
         const sec = Math.floor((timeInMilliseconds % NUMBER_OF_TENMILLISEC_IN_A_MIN) / 100);
         const ms = timeInMilliseconds % 100;

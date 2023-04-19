@@ -6,7 +6,6 @@ import levelOneImage from "./images/artStationImage.jpg"
 import levelTwoImage from "./images/li-decai-5-2.jpg"
 import levelThreeImage from "./images/bobogai.jpg"
 import Page from './Pages/Page';
-import Chrono from './HeaderCompoents/Chrono';
 import LevelOneHiddens from './images/HiddenImages/levelOne/LevelOneHiddens';
 import LevelTwoHiddens from './images/HiddenImages/levelTwo/LevelTwoHiddens';
 import LevelThreeHiddens from './images/HiddenImages/levelThree/LevelThreeHiddens';
@@ -18,15 +17,15 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<HomePage />} />
-        <Route path='/levelOne' element={<Page Timer={<Chrono />}
+        <Route path='/levelOne' element={<Page displayTimer={true}
           hiddenElementsArray={LevelOneHiddens}
           hiddenElements={<StyledHiddenImages hiddenElements={LevelOneHiddens} />}
           levelImage={levelOneImage} />} />
-        <Route path='/levelTwo' element={<Page Timer={<Chrono />}
+        <Route path='/levelTwo' element={<Page displayTimer={true}
           hiddenElementsArray={LevelTwoHiddens}
           hiddenElements={<StyledHiddenImages hiddenElements={LevelTwoHiddens} />}
           levelImage={levelTwoImage} />} />
-        <Route path='/levelThree' element={<Page Timer={<Chrono />}
+        <Route path='/levelThree' element={<Page displayTimer={true}
           hiddenElementsArray={LevelThreeHiddens}
           hiddenElements={<StyledHiddenImages hiddenElements={LevelThreeHiddens} />}
 
