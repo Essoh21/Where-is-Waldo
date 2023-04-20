@@ -109,7 +109,7 @@ const Page = ({ levelImage, hiddenElements, displayTimer, hiddenElementsArray })
             <FeedBack isWin={feedBack} isVisible={isVisible} />
             {gameOver && <Congratulations onClose={handleOnCongratClose} score={time} />}
             <Img src={levelImage} onMouseMove={handleMouseMove} onClick={handleLevelImageClick} />
-            {(!isClicked) && <Pointer position={position} />}
+            {(!isClicked) && <Pointer />}
             {(isClicked) && <HiddenList position={position} hiddenElements={levelHiddens}
                 handleClick={handleHiddenListClick} />}
 
@@ -121,6 +121,7 @@ width: 100%;
 overflow-clip-margin:content-box;
 overflow: clip;
 grid-area: body;
+cursor:none;
 `
 const isFound = (elementTitle, clickPositionRatios, HiddenRatios) => {
     let result = false;
