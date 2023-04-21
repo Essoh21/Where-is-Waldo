@@ -16,7 +16,7 @@ const HiddenImages = ({ hiddenElements, className }) => {
 }
 
 const Img = styled.img`
-z-index: 50;
+z-index: 10;
 width: 3rem;
 height: 3rem;
 border-radius: 30%;

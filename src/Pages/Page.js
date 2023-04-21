@@ -10,7 +10,7 @@ import { useEffect } from "react";
 import Chrono from "../HeaderCompoents/Chrono";
 import Congratulations from "../BodyComponents/Congratulations";
 
-const Page = ({ levelImage, hiddenElements, displayTimer, hiddenElementsArray }) => {
+const Page = ({ levelImage, hiddenElements, displayTimer, hiddenElementsArray, shouldDisplayCustomMouse }) => {
     const [position, setPosition] = useState({ "x": 0, "y": 0 });
     const [positionRatios, setPositionRatios] = useState({ x: 0, y: 0 });
     const [HiddenElPositions, setHiddenElPositions] = useState(HiddensPositions);
@@ -21,7 +21,14 @@ const Page = ({ levelImage, hiddenElements, displayTimer, hiddenElementsArray })
     const [gameOver, setGameOver] = useState(false);
     const [isRunning, setIsRunning] = useState(true);
     const [time, setTime] = useState(0);
-    const [playerInfo, setPlayerInfo] = useState({ name: '', score: '', currentDTime: "" });
+    const gameLevel = hiddenElementsArray[0].level;
+
+    const [winners, setWinners] = useState([]);
+
+    useEffect(() => {
+        console.log('---allWinners---')
+        console.log(...winners);
+    }, [winners])
 
     useEffect(() => {
         let intervalId;
@@ -57,16 +64,19 @@ const Page = ({ levelImage, hiddenElements, displayTimer, hiddenElementsArray })
 
     }
 
-    const handleOnCongratClose = ({ name, score, currentDTime }) => {
-        console.log(`before ${playerInfo}`)
-        setPlayerInfo(() => {
-            const info = { name, score, currentDTime }
-            console.log(playerInfo);
-            return info;
+    const handleOnCongratClose = (name, score, currentDTime, level) => {
+        setWinners(() => {
+            const playerInfo = {
+                "name": name,
+                "score": score,
+                "currentDTime": currentDTime,
+                "level": level
+            }
+            return [...winners, playerInfo];
         });
         setGameOver(false);
         setIsClicked(false);
-        window.location.href = "/Scores";
+        // window.location.href = "/Scores";
 
 
     }
@@ -105,12 +115,16 @@ const Page = ({ levelImage, hiddenElements, displayTimer, hiddenElementsArray })
 
     return (
         <>
-            <Header Timer={displayTimer && <Chrono time={time} />} Hiddens={hiddenElements} page="Go home" pageLink="/" />
+            <Header Timer={displayTimer && <Chrono time={time} />}
+                Hiddens={hiddenElements} page="Go home" pageLink="/" />
             <FeedBack isWin={feedBack} isVisible={isVisible} />
-            {gameOver && <Congratulations onClose={handleOnCongratClose} score={time} />}
-            <Img src={levelImage} onMouseMove={handleMouseMove} onClick={handleLevelImageClick} />
-            {(!isClicked) && <Pointer />}
-            {(isClicked) && <HiddenList position={position} hiddenElements={levelHiddens}
+            {gameOver && <Congratulations onClose={handleOnCongratClose}
+                score={time} level={gameLevel} />}
+            <Img src={levelImage} onMouseMove={handleMouseMove}
+                onClick={handleLevelImageClick} />
+            {(!isClicked) && shouldDisplayCustomMouse && <Pointer />}
+            {(isClicked) && <HiddenList position={position}
+                hiddenElements={levelHiddens}
                 handleClick={handleHiddenListClick} />}
 
         </>

@@ -8,8 +8,8 @@ const PointerWrapper = styled.div`
   top:0;
   left:0;
   pointer-events: none;
-  width: 40px ;
-  height: 40px;
+  width: 60px ;
+  height: 60px;
   border: 2px  dashed #666;
   border-radius: 100%;
   transform: translate(-50%, -50%);

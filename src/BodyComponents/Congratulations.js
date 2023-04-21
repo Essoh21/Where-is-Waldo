@@ -2,48 +2,47 @@ import React, { useState } from 'react';
 import { redirect } from 'react-router-dom';
 import styled from 'styled-components';
 
-const Congratulations = ({ onClose, score }) => {
-    const [name, setName] = useState('');
+const Congratulations = ({ onClose, score, level }) => {
+  const [name, setName] = useState('');
 
-    const handleNameChange = (event) => {
-        setName(event.target.value);
-    };
+  const handleNameChange = (event) => {
+    setName(event.target.value);
+  };
 
-    const handleFormSubmit = (event) => {
-        event.preventDefault();
-        const currentDTime = new Date().toLocaleString();
-        console.log(`Saving score for ${name} ${currentDTime}`);
-        onClose(name, score, currentDTime);
-    };
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    const currentDTime = new Date().toLocaleString();
+    onClose(name, score, currentDTime, level);
+  };
 
-    const handleCancelClick = () => {
-        console.log('User canceled');
-        redirect("/");
-    };
+  const handleCancelClick = () => {
+    console.log('User canceled');
+    redirect("/");
+  };
 
-    return (
-        <Overlay>
-            <Wrapper>
-                <Title>Congratulations!</Title>
-                <Form onSubmit={handleFormSubmit}>
-                    <Label htmlFor="name-input">Enter your name to save your score:</Label>
-                    <Input
-                        id="name-input"
-                        type="text"
-                        value={name}
-                        onChange={handleNameChange}
-                        required
-                    />
-                    <ButtonGroup>
-                        <Button type="submit">Submit</Button>
-                        <CancelButton type="button" onClick={handleCancelClick}>
-                            Cancel
-                        </CancelButton>
-                    </ButtonGroup>
-                </Form>
-            </Wrapper>
-        </Overlay>
-    );
+  return (
+    <Overlay>
+      <Wrapper>
+        <Title>Congratulations!</Title>
+        <Form onSubmit={handleFormSubmit}>
+          <Label htmlFor="name-input">Enter your name to save your score:</Label>
+          <Input
+            id="name-input"
+            type="text"
+            value={name}
+            onChange={handleNameChange}
+            required
+          />
+          <ButtonGroup>
+            <Button type="submit">Submit</Button>
+            <CancelButton type="button" onClick={handleCancelClick}>
+              Cancel
+            </CancelButton>
+          </ButtonGroup>
+        </Form>
+      </Wrapper>
+    </Overlay>
+  );
 };
 
 const Overlay = styled.div`

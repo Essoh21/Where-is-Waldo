@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 const HomePage = () => {
     return (
         <>
-            <Header page="Scores" pageLink="/Scores" />
+            <Header page="See scores" pageLink="/Scores" />
             <HomePageBody>
                 <Instructions>
                     Welcome to your favorite game. Chose a level and tagg
