@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { redirect } from 'react-router-dom';
 import styled from 'styled-components';
 
-const Congratulations = ({ onClose, score, level }) => {
+const Congratulations = ({ onClose, score, level, onMouseOver }) => {
   const [name, setName] = useState('');
 
   const handleNameChange = (event) => {
@@ -21,7 +21,7 @@ const Congratulations = ({ onClose, score, level }) => {
   };
 
   return (
-    <Overlay>
+    <Overlay onMouseOver={onMouseOver}>
       <Wrapper>
         <Title>Congratulations!</Title>
         <Form onSubmit={handleFormSubmit}>

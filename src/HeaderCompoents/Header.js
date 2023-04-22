@@ -1,16 +1,19 @@
 import styled from "styled-components"
 import logo from "../../src/images/logo.png"
 import { useNavigate } from "react-router-dom";
+import CustomMouseContext from "../Context/CustomMouseContext";
+import { useContext } from "react";
 
 
 
-const Header = ({ page, pageLink, Timer, Hiddens }) => {
+const Header = ({ page, pageLink, Timer, Hiddens, handleMouseOver }) => {
+    const { handleRemoveCmouse } = useContext(CustomMouseContext);
     const navigation = useNavigate();
     const handleClick = () => {
         navigation(`${pageLink}`);
     }
     return (
-        <HeaderDiv>
+        <HeaderDiv onMouseOver={handleRemoveCmouse}>
             <Logo src={logo} alt="app-logo" />
             {Timer}
             {Hiddens}

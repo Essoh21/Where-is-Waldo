@@ -9,6 +9,13 @@ import isBoundedBy from "../GeneralFunctions/isBoundedBy";
 import { useEffect } from "react";
 import Chrono from "../HeaderCompoents/Chrono";
 import Congratulations from "../BodyComponents/Congratulations";
+import firebaseApp from "../Firebase/FirbaseApp";
+import { getFirestore } from "firebase/firestore";
+import CustomMouseContext from "../Context/CustomMouseContext";
+import { useContext } from "react";
+
+const db = getFirestore(firebaseApp);
+
 
 const Page = ({ levelImage, hiddenElements, displayTimer, hiddenElementsArray, shouldDisplayCustomMouse }) => {
     const [position, setPosition] = useState({ "x": 0, "y": 0 });
@@ -21,8 +28,11 @@ const Page = ({ levelImage, hiddenElements, displayTimer, hiddenElementsArray, s
     const [gameOver, setGameOver] = useState(false);
     const [isRunning, setIsRunning] = useState(true);
     const [time, setTime] = useState(0);
-    const gameLevel = hiddenElementsArray[0].level;
-
+    let gameLevel;
+    if (hiddenElementsArray) {
+        gameLevel = hiddenElementsArray[0].level;
+    }
+    const { handleDisplayCmouse, handleRemoveCmouse } = useContext(CustomMouseContext);
     const [winners, setWinners] = useState([]);
 
     useEffect(() => {
@@ -119,8 +129,10 @@ const Page = ({ levelImage, hiddenElements, displayTimer, hiddenElementsArray, s
                 Hiddens={hiddenElements} page="Go home" pageLink="/" />
             <FeedBack isWin={feedBack} isVisible={isVisible} />
             {gameOver && <Congratulations onClose={handleOnCongratClose}
+                onMouseOver={handleRemoveCmouse}
                 score={time} level={gameLevel} />}
             <Img src={levelImage} onMouseMove={handleMouseMove}
+                onMouseOver={handleDisplayCmouse}
                 onClick={handleLevelImageClick} />
             {(!isClicked) && shouldDisplayCustomMouse && <Pointer />}
             {(isClicked) && <HiddenList position={position}
