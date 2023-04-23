@@ -9,15 +9,15 @@ import isBoundedBy from "../GeneralFunctions/isBoundedBy";
 import { useEffect } from "react";
 import Chrono from "../HeaderCompoents/Chrono";
 import Congratulations from "../BodyComponents/Congratulations";
-import firebaseApp from "../Firebase/FirbaseApp";
-import { getFirestore } from "firebase/firestore";
 import CustomMouseContext from "../Context/CustomMouseContext";
 import { useContext } from "react";
+import storeWinner from "../Firebase/storeWinner";
+import LoadingSpinner from "../BodyComponents/LoadingSpinner";
+import Winners from "../BodyComponents/Winners";
 
-const db = getFirestore(firebaseApp);
 
 
-const Page = ({ levelImage, hiddenElements, displayTimer, hiddenElementsArray, shouldDisplayCustomMouse }) => {
+const Page = ({ levelImage, hiddenElements, displayTimer, hiddenElementsArray, shouldDisplayCustomMouse, needScores }) => {
     const [position, setPosition] = useState({ "x": 0, "y": 0 });
     const [positionRatios, setPositionRatios] = useState({ x: 0, y: 0 });
     const [HiddenElPositions, setHiddenElPositions] = useState(HiddensPositions);
@@ -28,17 +28,12 @@ const Page = ({ levelImage, hiddenElements, displayTimer, hiddenElementsArray, s
     const [gameOver, setGameOver] = useState(false);
     const [isRunning, setIsRunning] = useState(true);
     const [time, setTime] = useState(0);
+    const [isLoading, setIsLoading] = useState(false);
     let gameLevel;
     if (hiddenElementsArray) {
         gameLevel = hiddenElementsArray[0].level;
     }
     const { handleDisplayCmouse, handleRemoveCmouse } = useContext(CustomMouseContext);
-    const [winners, setWinners] = useState([]);
-
-    useEffect(() => {
-        console.log('---allWinners---')
-        console.log(...winners);
-    }, [winners])
 
     useEffect(() => {
         let intervalId;
@@ -75,18 +70,21 @@ const Page = ({ levelImage, hiddenElements, displayTimer, hiddenElementsArray, s
     }
 
     const handleOnCongratClose = (name, score, currentDTime, level) => {
-        setWinners(() => {
+        const savePlayerInfo = async () => {
+            setGameOver(false);
+            setIsClicked(false);
+            setIsLoading(true);
             const playerInfo = {
                 "name": name,
                 "score": score,
                 "currentDTime": currentDTime,
                 "level": level
-            }
-            return [...winners, playerInfo];
-        });
-        setGameOver(false);
-        setIsClicked(false);
-        // window.location.href = "/Scores";
+            };
+            await storeWinner(playerInfo);
+            setIsLoading(false);
+            window.location.href = "/Scores";
+        }
+        savePlayerInfo();
 
 
     }
@@ -131,6 +129,7 @@ const Page = ({ levelImage, hiddenElements, displayTimer, hiddenElementsArray, s
             {gameOver && <Congratulations onClose={handleOnCongratClose}
                 onMouseOver={handleRemoveCmouse}
                 score={time} level={gameLevel} />}
+            <LoadingSpinner isLoading={isLoading} />
             <Img src={levelImage} onMouseMove={handleMouseMove}
                 onMouseOver={handleDisplayCmouse}
                 onClick={handleLevelImageClick} />
@@ -138,11 +137,13 @@ const Page = ({ levelImage, hiddenElements, displayTimer, hiddenElementsArray, s
             {(isClicked) && <HiddenList position={position}
                 hiddenElements={levelHiddens}
                 handleClick={handleHiddenListClick} />}
+            {needScores && <Winners />}
 
         </>
     )
 }
 const Img = styled.img`
+box-sizing:border-box;
 width: 100%;
 overflow-clip-margin:content-box;
 overflow: clip;

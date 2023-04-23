@@ -2,6 +2,7 @@
 import styled from 'styled-components';
 
 const FeedbackContainer = styled.div`
+box-sizing:border-box;
   position: absolute;
   z-index: 100;
   top: 3rem;

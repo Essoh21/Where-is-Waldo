@@ -43,7 +43,7 @@ function App() {
             hiddenElements={<StyledHiddenImages hiddenElements={LevelThreeHiddens} />}
 
             levelImage={levelThreeImage} />} />
-          <Route path='/Scores' element={<Page />} />
+          <Route path='/Scores' element={<Page needScores={true} />} />
         </Routes>
       </CustomMouseContext.Provider>
     </BrowserRouter>

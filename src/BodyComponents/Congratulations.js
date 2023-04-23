@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { redirect } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Congratulations = ({ onClose, score, level, onMouseOver }) => {
   const [name, setName] = useState('');
+  const navigate = useNavigate();
 
   const handleNameChange = (event) => {
     setName(event.target.value);
@@ -13,11 +14,12 @@ const Congratulations = ({ onClose, score, level, onMouseOver }) => {
     event.preventDefault();
     const currentDTime = new Date().toLocaleString();
     onClose(name, score, currentDTime, level);
+    // window.location.href = "/Scores";
   };
 
   const handleCancelClick = () => {
     console.log('User canceled');
-    redirect("/");
+    navigate("/");
   };
 
   return (
@@ -31,6 +33,7 @@ const Congratulations = ({ onClose, score, level, onMouseOver }) => {
             type="text"
             value={name}
             onChange={handleNameChange}
+            autoFocus
             required
           />
           <ButtonGroup>
@@ -46,6 +49,7 @@ const Congratulations = ({ onClose, score, level, onMouseOver }) => {
 };
 
 const Overlay = styled.div`
+box-sizing:border-box;
   position: fixed;
   top: 0;
   left: 0;
@@ -58,7 +62,8 @@ const Overlay = styled.div`
 `;
 
 const Wrapper = styled.div`
-  background-color: white;
+box-sizing:border-box;  
+background-color: white;
   border-radius: 5px;
   padding: 2rem;
   display: flex;
