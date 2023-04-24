@@ -45,6 +45,11 @@ const Img = styled.img`
 width: 1.5rem;
 height: 1.5rem;
 border-radius: 50%;
+
+@media (max-width:768px){
+    width:1rem;
+    height:1rem;
+}
 `
 const Item = styled.div`
 margin:0;
@@ -59,6 +64,12 @@ justify-content: center;
 & :hover{
 border: 1px solid white;
 }
+
+@media (max-width:768px){
+    gap:.2rem;
+    padding: .15rem;
+    font-size: .9rem;
+}
 `;
 const FoundItem = styled.div`
 margin:0;
@@ -71,6 +82,12 @@ flex-direction: row;
 gap: .5rem;
 align-items center;
 justify-content: center;
+
+@media (max-width:768px){
+    gap:.2rem;
+    padding: .1rem;
+    font-size: .9rem;
+}
 `
 
 export default HiddenList;

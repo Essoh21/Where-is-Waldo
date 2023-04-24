@@ -12,6 +12,10 @@ box-sizing:border-box;
   padding: 10px;
   border-radius: 5px;
   text-align: center;
+
+@media (max-width:768px){
+  font-weight:.9rem;
+}
 `;
 
 const FeedbackText = styled.p`
