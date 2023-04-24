@@ -14,6 +14,11 @@ import CustomMouseContext from './Context/CustomMouseContext';
 
 
 function App() {
+  const [gameLevel, setGameLevel] = useState("one");
+
+  const handleGameLevelSet = (level) => {
+    setGameLevel(level);
+  }
   const [displayCmouse, setDisplayCmouse] = useState(true);
   const handleDisplayCmouse = (e) => {
     setDisplayCmouse(true);
@@ -21,6 +26,7 @@ function App() {
   const handleRemoveCmouse = (e) => {
     setDisplayCmouse(false);
   }
+  console.log(gameLevel);
   return (
 
     <BrowserRouter>
@@ -28,22 +34,28 @@ function App() {
         <Routes>
           <Route path='/' element={<HomePage />} />
           <Route path='/levelOne' element={<Page displayTimer={true}
+            gameLevel={gameLevel}
+            handleLevel={handleGameLevelSet}
             shouldDisplayCustomMouse={displayCmouse}
             hiddenElementsArray={LevelOneHiddens}
             hiddenElements={<StyledHiddenImages hiddenElements={LevelOneHiddens} />}
             levelImage={levelOneImage} />} />
           <Route path='/levelTwo' element={<Page displayTimer={true}
+            gameLevel={gameLevel}
+            handleLevel={handleGameLevelSet}
             shouldDisplayCustomMouse={displayCmouse}
             hiddenElementsArray={LevelTwoHiddens}
             hiddenElements={<StyledHiddenImages hiddenElements={LevelTwoHiddens} />}
             levelImage={levelTwoImage} />} />
           <Route path='/levelThree' element={<Page displayTimer={true}
+            gameLevel={gameLevel}
+            handleLevel={handleGameLevelSet}
             shouldDisplayCustomMouse={displayCmouse}
             hiddenElementsArray={LevelThreeHiddens}
             hiddenElements={<StyledHiddenImages hiddenElements={LevelThreeHiddens} />}
 
             levelImage={levelThreeImage} />} />
-          <Route path='/Scores' element={<Page needScores={true} />} />
+          <Route path='/Scores' element={<Page needScore={true} gameLevel={gameLevel} />} />
         </Routes>
       </CustomMouseContext.Provider>
     </BrowserRouter>

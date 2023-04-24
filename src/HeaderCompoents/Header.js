@@ -6,7 +6,7 @@ import { useContext } from "react";
 
 
 
-const Header = ({ page, pageLink, Timer, Hiddens, handleMouseOver }) => {
+const Header = ({ page, pageLink, Timer, Hiddens }) => {
     const { handleRemoveCmouse } = useContext(CustomMouseContext);
     const navigation = useNavigate();
     const handleClick = () => {

@@ -3,7 +3,7 @@ import { getFirestore, collection, getDocs } from "firebase/firestore";
 
 const db = getFirestore(firebaseApp);
 
-const getWinners = async () => {
+const getLevelWinners = async (level) => {
     try {
         const querySnapshot = await getDocs(collection(db, "winners"));
         const winners = querySnapshot.docs.map((doc) => ({
@@ -11,12 +11,13 @@ const getWinners = async () => {
             ...doc.data(),
         }));
         winners.sort((a, b) => a.score - b.score);
-        console.log('winners loaded successfuly', winners);
-        return winners
+        const levelWinners = winners.filter(winner => winner.level === level)
+        console.log('winners loaded successfuly', levelWinners);
+        return levelWinners;
     } catch (err) {
         console.log("error retrieving winners", err);
         return [];
     }
 }
 
-export default getWinners;
+export default getLevelWinners;

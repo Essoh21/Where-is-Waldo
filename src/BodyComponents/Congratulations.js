@@ -12,9 +12,8 @@ const Congratulations = ({ onClose, score, level, onMouseOver }) => {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    const currentDTime = new Date().toLocaleString();
+    const currentDTime = new Date().toLocaleDateString();
     onClose(name, score, currentDTime, level);
-    // window.location.href = "/Scores";
   };
 
   const handleCancelClick = () => {

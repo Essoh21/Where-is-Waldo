@@ -1,77 +1,100 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import getWinners from '../Firebase/getWinners';
+//import getWinners from '../Firebase/getWinners';
+import getLevelWinners from '../Firebase/getLevelWinners';
+import formatTime from '../Fonctions/formatTime';
 
 
 const Container = styled.div`
-box-sizing:border-box;
-  position: fixed;
-  margin-top:2rem;
-  width:80%;
-
+  grid-area: body;
+  box-sizing: border-box;
+  margin: 2rem auto;
+  width: 100%;
+  font-size: 1.2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 `;
 
-const Title = styled.h2`
-  font-size: 2rem;
-  margin-bottom: 1rem;
-`;
-
-const List = styled.ul`
-  list-style: none;
-  padding: 0;
-  margin: 0;
-`;
-
-const ListItem = styled.li`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+const Table = styled.table`
+  border-collapse: collapse;
   width: 100%;
+  max-width: 800px;
+`;
+
+const Title = styled.h2`
+  margin-top: 0;
+  font-weight: bold;
+  color: #555;
+`;
+
+const THead = styled.thead`
+  background-color: rgb(236,238,237);
+`;
+
+const TBody = styled.tbody`
+  max-height: 300px; 
+  overflow-y: auto;
+`;
+
+const TR = styled.tr`
+  &:nth-child(even) {
+    background-color: #e9e9e9;
+  }
+`;
+
+const TH = styled.th`
   padding: 1rem;
-  background-color: ${({ isHighlighted }) => (isHighlighted ? '#F9D9D9' : 'transparent')};
+  text-align: left;
+  font-weight: bold;
+  color: #555;
+  background-color: rgb(236,238,237);
 `;
 
-const Name = styled.span`
-  flex: 1;
+const TD = styled.td`
+  padding: 1rem;
+  text-align: left;
+  color: #333;
 `;
 
-const Score = styled.span`
-  margin-left: 1rem;
-`;
-
-const DateAndTime = styled.span`
-  margin-left: 1rem;
-`;
-
-const Winners = () => {
+const Winners = ({ gameLevel }) => {
   const [winners, setWinners] = useState([]);
+
   useEffect(() => {
     const loadWinners = async () => {
-      const savedWinners = await getWinners();
+      const savedWinners = await getLevelWinners(gameLevel);
       setWinners(savedWinners);
     }
     loadWinners();
-  }, []);
+  }, [gameLevel]);
 
   return (
     <Container>
-      <Title> Winners</Title>
-      <List>
-        {winners &&
-          winners.map((winner, index) => (
-            <ListItem key={winner.id} isHighlighted={index === 0}>
-              <Name>{winner.name}</Name>
-              <Score>{winner.score}</Score>
-              <DateAndTime>{winner.currentDTime}</DateAndTime>
-            </ListItem>
+      <Title>Level {gameLevel} Winners</Title>
+      <Table>
+        <THead>
+          <TR>
+            <TH>Rank</TH>
+            <TH>Player Name</TH>
+            <TH>Time</TH>
+            <TH>Date</TH>
+          </TR>
+        </THead>
+        <TBody>
+          {winners.map((winner, index) => (
+            <TR key={winner.id}>
+              <TD>{index + 1}</TD>
+              <TD style={{ fontWeight: "bold" }}>{winner.name}</TD>
+              <TD>{formatTime(Number(winner.score))}</TD>
+              <TD>{winner.currentDTime}</TD>
+            </TR>
           ))}
-      </List>
+        </TBody>
+      </Table>
     </Container>
   );
 };
 
 export default Winners;
+

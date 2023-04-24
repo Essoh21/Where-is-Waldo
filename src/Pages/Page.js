@@ -14,10 +14,14 @@ import { useContext } from "react";
 import storeWinner from "../Firebase/storeWinner";
 import LoadingSpinner from "../BodyComponents/LoadingSpinner";
 import Winners from "../BodyComponents/Winners";
+import { useNavigate } from "react-router-dom";
 
 
 
-const Page = ({ levelImage, hiddenElements, displayTimer, hiddenElementsArray, shouldDisplayCustomMouse, needScores }) => {
+const Page = ({ levelImage, hiddenElements, displayTimer,
+    hiddenElementsArray, shouldDisplayCustomMouse,
+    gameLevel, handleLevel, needScore
+}) => {
     const [position, setPosition] = useState({ "x": 0, "y": 0 });
     const [positionRatios, setPositionRatios] = useState({ x: 0, y: 0 });
     const [HiddenElPositions, setHiddenElPositions] = useState(HiddensPositions);
@@ -29,10 +33,13 @@ const Page = ({ levelImage, hiddenElements, displayTimer, hiddenElementsArray, s
     const [isRunning, setIsRunning] = useState(true);
     const [time, setTime] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
-    let gameLevel;
+    const navigation = useNavigate();
+    let level = "";
+
     if (hiddenElementsArray) {
-        gameLevel = hiddenElementsArray[0].level;
+        level = hiddenElementsArray[0].level;
     }
+
     const { handleDisplayCmouse, handleRemoveCmouse } = useContext(CustomMouseContext);
 
     useEffect(() => {
@@ -70,6 +77,7 @@ const Page = ({ levelImage, hiddenElements, displayTimer, hiddenElementsArray, s
     }
 
     const handleOnCongratClose = (name, score, currentDTime, level) => {
+
         const savePlayerInfo = async () => {
             setGameOver(false);
             setIsClicked(false);
@@ -82,7 +90,9 @@ const Page = ({ levelImage, hiddenElements, displayTimer, hiddenElementsArray, s
             };
             await storeWinner(playerInfo);
             setIsLoading(false);
-            window.location.href = "/Scores";
+            handleLevel(level);
+            navigation("/Scores");
+            //window.location.href = "/Scores";
         }
         savePlayerInfo();
 
@@ -128,7 +138,7 @@ const Page = ({ levelImage, hiddenElements, displayTimer, hiddenElementsArray, s
             <FeedBack isWin={feedBack} isVisible={isVisible} />
             {gameOver && <Congratulations onClose={handleOnCongratClose}
                 onMouseOver={handleRemoveCmouse}
-                score={time} level={gameLevel} />}
+                score={time * 10} level={level} />}
             <LoadingSpinner isLoading={isLoading} />
             <Img src={levelImage} onMouseMove={handleMouseMove}
                 onMouseOver={handleDisplayCmouse}
@@ -137,7 +147,7 @@ const Page = ({ levelImage, hiddenElements, displayTimer, hiddenElementsArray, s
             {(isClicked) && <HiddenList position={position}
                 hiddenElements={levelHiddens}
                 handleClick={handleHiddenListClick} />}
-            {needScores && <Winners />}
+            {needScore && <Winners gameLevel={gameLevel} />}
 
         </>
     )
