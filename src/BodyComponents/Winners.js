@@ -15,12 +15,20 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
 `;
 
 const Table = styled.table`
   border-collapse: collapse;
   width: 100%;
   max-width: 800px;
+
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+  }
 `;
 
 const Title = styled.h2`
@@ -36,6 +44,11 @@ const THead = styled.thead`
 const TBody = styled.tbody`
   max-height: 300px; 
   overflow-y: auto;
+
+  @media (max-width: 768px) {
+    max-height: 200px;
+    font-size: 0.8rem;
+  }
 `;
 
 const TR = styled.tr`
@@ -50,12 +63,20 @@ const TH = styled.th`
   font-weight: bold;
   color: #555;
   background-color: rgb(236,238,237);
+
+  @media (max-width: 768px) {
+    padding: 0.8rem;
+  }
 `;
 
 const TD = styled.td`
   padding: 1rem;
   text-align: left;
   color: #333;
+
+  @media (max-width: 768px) {
+    padding: 0.8rem;
+  }
 `;
 
 const Winners = ({ gameLevel }) => {

@@ -155,8 +155,6 @@ const Page = ({ levelImage, hiddenElements, displayTimer,
 const Img = styled.img`
 box-sizing:border-box;
 width: 100%;
-overflow-clip-margin:content-box;
-overflow: clip;
 grid-area: body;
 cursor:none;
 `

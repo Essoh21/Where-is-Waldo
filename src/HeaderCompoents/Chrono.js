@@ -21,6 +21,10 @@ font-weight: bold;
 font-family: sans-serif;
 font-size: 1.5rem;
 color: #333;
+
+@media (max-width: 768px) {
+    font-size: 1rem;
+}
 `
 
 export default Chrono;

@@ -11,6 +11,7 @@ import LevelTwoHiddens from './images/HiddenImages/levelTwo/LevelTwoHiddens';
 import LevelThreeHiddens from './images/HiddenImages/levelThree/LevelThreeHiddens';
 import StyledHiddenImages from './HeaderCompoents/HidenImages';
 import CustomMouseContext from './Context/CustomMouseContext';
+import Github from './FouterComponents/Github';
 
 
 function App() {
@@ -58,6 +59,7 @@ function App() {
           <Route path='/Scores' element={<Page needScore={true} gameLevel={gameLevel} />} />
         </Routes>
       </CustomMouseContext.Provider>
+      <Github link={"https://github.com/Essoh21"} text={"Made by Essohanam"} />
     </BrowserRouter>
   );
 

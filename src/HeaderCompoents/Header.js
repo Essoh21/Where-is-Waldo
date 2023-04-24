@@ -17,30 +17,24 @@ const Header = ({ page, pageLink, Timer, Hiddens }) => {
             <Logo src={logo} alt="app-logo" />
             {Timer}
             {Hiddens}
-            <StyldeDiv>
-                <button onClick={handleClick}> {page}</button>
-            </StyldeDiv>
+
+            <Button onClick={handleClick}> {page}</Button>
+
         </HeaderDiv>
     )
 }
 
-const StyldeDiv = styled.div`
-font-family: sans-serif;
-font-weight:bold;
-font-size: 1.2rem;
+const Button = styled.button`
+font-size: 1rem;
 border-radius: .4rem;
-color:black;
 display:flex;
 align-items:center;
 justify-content:center;
-padding: .3rem;
+padding: .2rem;
 
-a{
-    color: rgba(6,86,83,100);
-    text-decoration: none;
-}
-a:hover{
- text-decoration: underline;
+@media (max-width: 768px) {
+    font-size:.7rem;
+    padding:.1rem;
 }
 
 `
@@ -51,6 +45,11 @@ width: 2rem;
 height: 2rem;
 border-radius: 50%;
 margin: .5rem .3rem;
+
+@media (max-width: 768px) {
+    width:1.5rem;
+    height:1.5rem;
+}
 `
 const HeaderDiv = styled.div`
 background-color:rgb(236,238,237);
