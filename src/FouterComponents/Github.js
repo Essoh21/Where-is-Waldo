@@ -9,6 +9,7 @@ const spin = keyframes`
 `;
 
 const Wrapper = styled.a`
+width:25%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,7 +18,7 @@ const Wrapper = styled.a`
   font-weight: bold;
   font-size: 1.2rem;
   margin: 1rem;
-  padding: 1rem;
+  padding: .5rem;
   border-radius: 5px;
   border: 2px solid black;
   transition: all 0.3s ease-in-out;
@@ -30,6 +31,10 @@ const Wrapper = styled.a`
       animation: ${spin} 2s linear infinite;
     }
   }
+
+  @media (max-width:769px){
+    font-size:.9rem;
+  }
 `;
 
 const GithubIcon = styled(FaGithub)`
@@ -39,12 +44,12 @@ const GithubIcon = styled(FaGithub)`
 `;
 
 const Github = ({ link, text }) => {
-    return (
-        <Wrapper href={link} target="_blank" rel="noopener noreferrer">
-            <GithubIcon />
-            {text}
-        </Wrapper>
-    );
+  return (
+    <Wrapper href={link} target="_blank" rel="noopener noreferrer">
+      <GithubIcon />
+      {text}
+    </Wrapper>
+  );
 };
 
 export default Github;

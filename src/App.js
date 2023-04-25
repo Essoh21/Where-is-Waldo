@@ -27,7 +27,6 @@ function App() {
   const handleRemoveCmouse = (e) => {
     setDisplayCmouse(false);
   }
-  console.log(gameLevel);
   return (
 
     <BrowserRouter>

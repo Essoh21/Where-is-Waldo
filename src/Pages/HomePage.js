@@ -93,8 +93,8 @@ fonst-size:1.4rem
 
 `
 const LevelImage = styled.img`
-width: clamp(8rem, 30vw, 20rem) ;
-height: clamp(8rem, 30vw, 20rem) ;
+width: clamp(6rem, 30vw, 20rem) ;
+height: clamp(6rem, 30vw, 20rem) ;
 border-radius:50%;
 &:hover{
     cursor:pointer;
@@ -108,8 +108,6 @@ width:100%;
 display:flex;
 flex-direction: column;
 box-sizing:border-box;
-max-height: 100vh;
-max-width: 100vw;
 align-items: center;
 
 `

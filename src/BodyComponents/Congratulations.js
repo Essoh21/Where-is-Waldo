@@ -17,7 +17,6 @@ const Congratulations = ({ onClose, score, level, onMouseOver }) => {
   };
 
   const handleCancelClick = () => {
-    console.log('User canceled');
     navigate("/");
   };
 
