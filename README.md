@@ -7,7 +7,7 @@ A fun and interactive web application where users search for hidden elements in 
 To get started with the Hidden Elements Game, follow these steps:
 
 ###### use the live preview by clicking on this https://find-hiddens.web.app/   or 
-Clone this repository to your local machine using git clone https://github.com/your-username/hidden-elements-game.git
+Clone this repository to your local machine using git clone https://github.com/Essoh21/where-is-waldo.git
 Install the required dependencies using npm install
 Start the development server using npm start
 Open your browser and go to http://localhost:3000
