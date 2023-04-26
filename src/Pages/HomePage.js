@@ -9,7 +9,7 @@ import HowToPlay from "../BodyComponents/HowToPlay";
 
 const HomePage = () => {
 
-    const [seeHowToPlay, setSeeHowToPlay] = useState(false);
+    const [seeHowToPlay, setSeeHowToPlay] = useState(true);
     return (
         <>
             <Header page="See scores" pageLink="/Scores" />
@@ -18,7 +18,7 @@ const HomePage = () => {
                     Welcome to your favorite game. Chose a level and tagg
                     the hidden elements in the picture
                 </Instructions>
-                <StyledButton see={seeHowToPlay} handleClick={() => setSeeHowToPlay(!seeHowToPlay)} />
+                <StyledButton see={!seeHowToPlay} handleClick={() => setSeeHowToPlay(!seeHowToPlay)} />
                 {(!seeHowToPlay && <HowToPlay instructions={instructions} />)}
                 {
                     seeHowToPlay && <LevelImagesContainer>
@@ -143,7 +143,7 @@ Once you correctly identify all three images,
   You can then move on to the next level or replay the same level to improve your time and ranking.`
 
 const StyledButton = ({ see, handleClick }) => {
-    const label = see ? 'How to Play' : 'Go Back';
+    const label = !see ? 'How to Play' : 'Go Back';
     return <Button onClick={handleClick}>{label}</Button>;
 }
 
