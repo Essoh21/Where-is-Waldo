@@ -4,8 +4,12 @@ import levelOneImage from "../images/artStationImage.jpg"
 import levelTwoImage from "../images/li-decai-5-2.jpg"
 import levelThreeImage from "../images/bobogai.jpg";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import HowToPlay from "../BodyComponents/HowToPlay";
 
 const HomePage = () => {
+
+    const [seeHowToPlay, setSeeHowToPlay] = useState(false);
     return (
         <>
             <Header page="See scores" pageLink="/Scores" />
@@ -14,25 +18,29 @@ const HomePage = () => {
                     Welcome to your favorite game. Chose a level and tagg
                     the hidden elements in the picture
                 </Instructions>
-                <LevelImagesContainer>
-                    <div className="levelOneAndTwo">
-                        <StyledLevelContent
-                            link="/levelOne"
-                            title="Level one "
-                            imgsrc={levelOneImage} imgalt="level-one-image" />
-                        <StyledLevelContent
-                            link="/levelTwo"
-                            title="Level two "
-                            imgsrc={levelTwoImage} imgalt="level-two-image" />
-                    </div>
-                    <div className="thirdLevel">
-                        <StyledLevelContent
-                            link="/levelThree"
-                            title="Level Three"
-                            imgsrc={levelThreeImage} imgalt="level-three-image" />
-                    </div>
+                <StyledButton see={seeHowToPlay} handleClick={() => setSeeHowToPlay(!seeHowToPlay)} />
+                {(!seeHowToPlay && <HowToPlay instructions={instructions} />)}
+                {
+                    seeHowToPlay && <LevelImagesContainer>
+                        <div className="levelOneAndTwo">
+                            <StyledLevelContent
+                                link="/levelOne"
+                                title="Level one "
+                                imgsrc={levelOneImage} imgalt="level-one-image" />
+                            <StyledLevelContent
+                                link="/levelTwo"
+                                title="Level two "
+                                imgsrc={levelTwoImage} imgalt="level-two-image" />
+                        </div>
+                        <div className="thirdLevel">
+                            <StyledLevelContent
+                                link="/levelThree"
+                                title="Level Three"
+                                imgsrc={levelThreeImage} imgalt="level-three-image" />
+                        </div>
 
-                </LevelImagesContainer>
+                    </LevelImagesContainer>
+                }
             </HomePageBody>
         </>
     )
@@ -111,5 +119,32 @@ box-sizing:border-box;
 align-items: center;
 
 `
+const Button = styled.button`
+background-color: #007bff;
+color: #fff;
+font-size: 16px;
+padding: 10px 20px;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+&:hover {
+  background-color: #0069d9;
+}
+`;
+
+const instructions = `This is a game that exercises your memory skills.
+ There are three black and white images at the top that are part of the larger image in the game.
+  The objective is to identify these images as quickly as possible. There is a timer to track the time taken.
+   To identify the image, you need to click on that part of the larger image and then select the image from the list that appears.
+    The game will tell you whether the image is correctly identified or not.
+
+Once you correctly identify all three images,
+ the game asks for your name to display your time among others who have played the game worldwide.
+  You can then move on to the next level or replay the same level to improve your time and ranking.`
+
+const StyledButton = ({ see, handleClick }) => {
+    const label = see ? 'How to Play' : 'Go Back';
+    return <Button onClick={handleClick}>{label}</Button>;
+}
 
 export default HomePage

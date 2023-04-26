@@ -12,10 +12,8 @@ const getLevelWinners = async (level) => {
         }));
         winners.sort((a, b) => a.score - b.score);
         const levelWinners = winners.filter(winner => winner.level === level)
-        console.log('winners loaded successfuly', levelWinners);
         return levelWinners;
     } catch (err) {
-        console.log("error retrieving winners", err);
         return [];
     }
 }
