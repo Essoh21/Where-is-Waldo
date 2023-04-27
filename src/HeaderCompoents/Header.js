@@ -25,16 +25,20 @@ const Header = ({ page, pageLink, Timer, Hiddens }) => {
 }
 
 const Button = styled.button`
-font-size: 1rem;
-border-radius: .4rem;
-display:flex;
-align-items:center;
-justify-content:center;
-padding: .2rem;
+background-color: #007bff;
+color: #fff;
+font-size: 16px;
+padding: 10px 20px;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+&:hover {
+  background-color: #0069d9;
+}
 
 @media (max-width: 768px) {
     font-size:.7rem;
-    padding:.1rem;
+    padding:5px 8px;
 }
 
 `
