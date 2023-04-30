@@ -45,7 +45,7 @@ const GithubIcon = styled(FaGithub)`
 
 const Github = ({ link, text }) => {
   return (
-    <Wrapper href={link} target="_blank" rel="noopener noreferrer">
+    <Wrapper href={link} target="_blank" rel="noopener noreferrer" className='notranslate'>
       <GithubIcon />
       {text}
     </Wrapper>

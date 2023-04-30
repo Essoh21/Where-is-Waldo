@@ -18,7 +18,7 @@ const HomePage = () => {
                     Welcome to your favorite game. Chose a level and tagg
                     the hidden elements in the picture
                 </Instructions>
-                <StyledButton see={!seeHowToPlay} handleClick={() => setSeeHowToPlay(!seeHowToPlay)} />
+                <StyledButton see={!seeHowToPlay} handleClick={() => setSeeHowToPlay(!seeHowToPlay)} className="notranslate" />
                 {(!seeHowToPlay && <HowToPlay instructions={instructions} />)}
                 {
                     seeHowToPlay && <LevelImagesContainer>

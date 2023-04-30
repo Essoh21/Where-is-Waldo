@@ -18,7 +18,7 @@ const Header = ({ page, pageLink, Timer, Hiddens }) => {
             {Timer}
             {Hiddens}
 
-            <Button onClick={handleClick}> {page}</Button>
+            <Button onClick={handleClick} className="notranslate"> {page}</Button>
 
         </HeaderDiv>
     )
